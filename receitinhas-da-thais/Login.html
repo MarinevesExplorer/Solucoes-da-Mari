@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <base target="_top">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#177c73">
+  <title>Entrar | Receitinhas da Thaís</title>
+  <style>
+    :root {--ink:#183d43;--teal:#177c73;--dark:#11655e;--cream:#fffdf8;--line:#dce7e1;--wash:#f3f7f3;--orange:#eaa85d;--gray:#61726d}
+    *{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#fffdf8 5%,#eaf5ef 100%);color:var(--ink);font:15px system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh}
+    .hidden{display:none!important}.brand{display:flex;align-items:center;gap:12px;margin-bottom:24px}.logo{width:56px;height:56px;display:grid;place-items:center;background:#ffe7ae;border-radius:18px;font-size:27px}
+    h1{font-size:27px;line-height:1.1;letter-spacing:-1px;margin:0 0 6px}h2{font-size:20px;margin:0 0 12px}p{margin:0 0 16px;line-height:1.5;color:var(--gray)}.muted{font-size:12px;color:var(--gray)}
+    .frame{max-width:1080px;margin:0 auto;padding:24px 15px 80px}.center{min-height:90vh;display:flex;align-items:center;justify-content:center}.panel{background:white;border:1px solid var(--line);border-radius:23px;box-shadow:0 10px 45px rgba(24,61,67,.08);padding:26px;width:100%}.narrow{max-width:440px}
+    label{display:block;font-size:13px;font-weight:700;margin-bottom:6px}.field{margin-bottom:16px}input[type=email],input[type=password],input[type=text]{width:100%;min-height:46px;padding:10px 13px;border-radius:12px;border:1px solid #c7dcd4;color:var(--ink);background:white;font:inherit}input:focus{outline:3px solid #e7bf7a;outline-offset:1px}
+    button{font:inherit;cursor:pointer}button:disabled{opacity:.55;cursor:progress}.primary,.secondary,.small{border-radius:12px;padding:12px 15px;border:1px solid transparent;font-weight:750}.primary{background:var(--teal);color:white}.secondary{background:#edf6f1;color:var(--dark);border-color:#cfe4da}.small{padding:7px 10px;font-size:12px;border:1px solid var(--line);background:white;color:var(--dark)}.wide{width:100%;min-height:46px}.alert{border-radius:12px;padding:10px 13px;background:#fff1e4;border:1px solid #efc6a3;color:#874d21;margin:0 0 14px;font-size:13px}.info{padding:12px 14px;background:#eef8f3;border-radius:12px;margin-top:18px;font-size:12px;line-height:1.5;color:#38655b}.toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:18px}.toolbar .actions{display:flex;gap:7px;flex-wrap:wrap}.admin-grid{display:grid;grid-template-columns:320px minmax(0,1fr);gap:14px}.people{max-height:520px;overflow:auto}.userrow{width:100%;display:flex;flex-direction:column;align-items:flex-start;gap:3px;background:white;border:0;border-bottom:1px solid #ecf1ee;padding:12px 8px;text-align:left}.userrow:hover,.userrow.selected{background:#f0f8f3}.userrow strong{font-size:13px;max-width:100%;overflow-wrap:anywhere}.userrow span{color:var(--gray);font-size:11px}.pill{display:inline-flex;padding:2px 7px;border-radius:12px;background:#e7f4ec;color:#167353;font-size:11px}.pill.off{background:#f6ebe7;color:#9e514a}.checks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 7px;margin:10px 0 18px}.ck{display:flex;gap:8px;align-items:start;font-size:13px;font-weight:500;cursor:pointer;margin:0}.ck input{width:17px;height:17px;accent-color:var(--teal);margin:1px 0 0;flex-shrink:0}.section-title{margin-top:18px;padding-top:15px;border-top:1px solid var(--line);font-weight:800}.rowbuttons{display:flex;gap:8px;flex-wrap:wrap}.load{display:flex;gap:12px;align-items:center;justify-content:center;margin-top:15px}.spinner{width:17px;height:17px;border:2px solid #bee2cf;border-top-color:#147c6a;border-radius:50%;animation:spin .65s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+    @media(max-width:700px){.admin-grid{grid-template-columns:1fr}.panel{padding:18px}.frame{padding:14px 11px 55px}.center{min-height:90vh}.people{max-height:220px}.toolbar{align-items:flex-start}}
+  </style>
+</head>
+<body>
+<div id="entry" class="frame center"><section class="panel narrow">
+  <div class="brand"><div class="logo">🥣</div><div><h1>Receitinhas da Thaís</h1><div class="muted">Cozinha divertida • Área de membros</div></div></div>
+  <section id="loginPanel">
+    <h2>Entre na sua conta</h2><p>Seu acesso às receitas é personalizado de acordo com os blocos liberados.</p>
+    <div id="loginError" class="alert hidden" role="alert"></div>
+    <form id="loginForm">
+      <div class="field"><label for="email">E-mail cadastrado</label><input id="email" type="email" autocomplete="username" required placeholder="seuemail@exemplo.com"></div>
+      <div class="field"><label for="pass">Senha</label><input id="pass" type="password" autocomplete="current-password" required placeholder="Sua senha"></div>
+      <button id="enterButton" class="primary wide" type="submit">Entrar</button>
+    </form>
+    <div class="info">O cadastro é feito pela administração. No primeiro acesso, use a senha provisória informada e depois crie sua senha pessoal.</div>
+  </section>
+  <section id="passPanel" class="hidden">
+    <h2>Alterar minha senha</h2><p>Proteja sua conta com uma senha individual.</p>
+    <div id="passError" class="alert hidden" role="alert"></div>
+    <form id="passForm">
+      <div class="field"><label for="currentPass">Senha atual</label><input id="currentPass" type="password" autocomplete="current-password" required></div>
+      <div class="field"><label for="newPass">Nova senha</label><input id="newPass" type="password" autocomplete="new-password" minlength="10" required></div>
+      <div class="field"><label for="confirmPass">Confirmar nova senha</label><input id="confirmPass" type="password" autocomplete="new-password" minlength="10" required></div>
+      <p class="muted">Use no mínimo 10 caracteres, incluindo maiúscula, minúscula, número e símbolo.</p>
+      <button id="passButton" class="primary wide" type="submit">Salvar nova senha</button>
+      <button id="passBack" type="button" class="secondary wide" style="margin-top:8px">Voltar</button>
+    </form>
+  </section>
+  <div id="loading" class="load hidden"><div class="spinner"></div><span class="muted">Verificando acesso…</span></div>
+</section></div>
+<div id="adminPanel" class="frame hidden">
+  <div class="toolbar"><div class="brand" style="margin:0"><div class="logo">🥣</div><div><h1>Controle de usuários</h1><div class="muted">Receitinhas da Thaís · Administração</div></div></div>
+    <div class="actions"><button id="viewRecipes" class="primary">Ver receitas</button><button id="changePass" class="secondary">Minha senha</button><button id="logout" class="secondary">Sair</button></div>
+  </div>
+  <div id="adminError" class="alert hidden" role="alert"></div>
+  <div class="admin-grid">
+    <section class="panel"><div class="toolbar"><h2 style="margin:0">Pessoas cadastradas</h2><button id="newUser" class="small" type="button">+ Novo</button></div><div id="userList" class="people"><p>Carregando…</p></div></section>
+    <section class="panel"><h2 id="editTitle">Cadastrar usuário</h2><p>Defina quem pode acessar cada bloco. Você também pode editar as permissões diretamente na planilha.</p>
+      <form id="userForm">
+        <div class="field"><label for="userEmail">E-mail</label><input id="userEmail" type="email" required placeholder="usuario@email.com"></div>
+        <div class="field"><label for="userName">Nome (opcional)</label><input id="userName" type="text" maxlength="120" placeholder="Nome do usuário"></div>
+        <label class="ck"><input id="userActive" type="checkbox" checked><span>Usuário ativo</span></label>
+        <div class="section-title">Blocos de receitas liberados</div>
+        <div id="blocksList" class="checks"></div>
+        <div class="rowbuttons"><button id="saveUser" class="primary" type="submit">Salvar usuário</button><button id="resetUser" class="secondary hidden" type="button">Redefinir para SENHA_PROVISORIA</button></div>
+      </form>
+      <div class="info">Novos usuários recebem senha provisória <strong>SENHA_PROVISORIA</strong> e deverão trocá-la no primeiro acesso. A senha não fica visível na planilha.</div>
+    </section>
+  </div>
+</div>
+<script>
+(function(){'use strict';
+  const BLOCOS=['Café da manhã','Lancheira','Almoço','Lanche da tarde','Jantar','Festas saudáveis','Receitas infantis','Receitas interativas'];
+  const el=id=>document.getElementById(id);
+  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  let token=sessionStorage.getItem('receitinhas_token')||'',user=null,users=[],selected='';
+  function err(id,msg){const node=el(id);node.textContent=msg||'';node.classList.toggle('hidden',!msg)}
+  function loading(yes){el('loading').classList.toggle('hidden',!yes)}
+  function call(name,args){return new Promise((resolve,reject)=>google.script.run.withSuccessHandler(resolve).withFailureHandler(reject)[name](...args))}
+  function message(e){return e&&e.message?e.message:'Não foi possível concluir. Tente novamente.'}
+  function screen(name){el('entry').classList.toggle('hidden',name==='admin');el('adminPanel').classList.toggle('hidden',name!=='admin');el('loginPanel').classList.toggle('hidden',name!=='login');el('passPanel').classList.toggle('hidden',name!=='pass')}
+  function signOut(){const old=token;token='';user=null;selected='';sessionStorage.removeItem('receitinhas_token');sessionStorage.removeItem('receitinhas_abrir_troca');if(old)call('apiSair',[old]).catch(()=>{});screen('login');el('pass').value='';err('loginError','')}
+  async function afterAuth(){
+    if(!user)return signOut();
+    if(user.trocarSenha || sessionStorage.getItem('receitinhas_abrir_troca')==='1'){
+      sessionStorage.removeItem('receitinhas_abrir_troca');screen('pass');return;
+    }
+    if(user.perfil==='ADMIN'){
+      screen('admin');await reloadUsers();return;
+    }
+    await openRecipes();
+  }
+  async function openRecipes(){
+    err('loginError','');loading(true);
+    try{
+      const html=await call('apiAbrirReceitas',[token]);
+      document.open();document.write(html);document.close();
+    }catch(e){loading(false);screen('login');err('loginError',message(e));}
+  }
+  el('loginForm').addEventListener('submit',async ev=>{
+    ev.preventDefault();err('loginError','');el('enterButton').disabled=true;loading(true);
+    try{
+      const res=await call('apiEntrar',[el('email').value,el('pass').value]);
+      token=res.token;user=res.usuario;sessionStorage.setItem('receitinhas_token',token);
+      el('currentPass').value=el('pass').value;el('pass').value='';
+      await afterAuth();
+    }catch(e){err('loginError',message(e))}
+    finally{loading(false);el('enterButton').disabled=false}
+  });
+  el('passForm').addEventListener('submit',async ev=>{
+    ev.preventDefault();err('passError','');
+    const n=el('newPass').value;
+    if(n!==el('confirmPass').value){err('passError','As senhas não conferem.');return;}
+    el('passButton').disabled=true;
+    try{
+      const res=await call('apiTrocarSenha',[token,el('currentPass').value,n]);
+      token=res.token;user=res.usuario;sessionStorage.setItem('receitinhas_token',token);
+      el('currentPass').value='';el('newPass').value='';el('confirmPass').value='';
+      await afterAuth();
+    }catch(e){err('passError',message(e))}
+    finally{el('passButton').disabled=false}
+  });
+  el('passBack').addEventListener('click',()=>user && !user.trocarSenha ? afterAuth() : signOut());
+  el('changePass').addEventListener('click',()=>{err('passError','');el('currentPass').value='';screen('pass')});
+  el('logout').addEventListener('click',signOut);
+  el('viewRecipes').addEventListener('click',openRecipes);
+  BLOCOS.forEach((b,i)=>{
+    const lb=document.createElement('label');lb.className='ck';
+    const inp=document.createElement('input');inp.type='checkbox';inp.value=b;inp.name='blocks';inp.id='block'+i;
+    const sp=document.createElement('span');sp.textContent=b;lb.append(inp,sp);el('blocksList').appendChild(lb);
+  });
+  function currentBlocks(){return Array.from(el('blocksList').querySelectorAll('input:checked')).map(c=>c.value)}
+  function fillForm(u){
+    selected=u?u.email:'';el('editTitle').textContent=u?'Editar permissões':'Cadastrar usuário';
+    el('userEmail').value=u?u.email:'';el('userEmail').readOnly=!!u;
+    el('userName').value=u?u.nome:'';el('userActive').checked=u?u.ativo:true;
+    el('resetUser').classList.toggle('hidden',!u);
+    el('blocksList').querySelectorAll('input').forEach(ch=>ch.checked=!!u&&u.blocos.includes(ch.value));
+    drawList();
+  }
+  function drawList(){
+    const node=el('userList');node.innerHTML='';
+    const shown=users.filter(u=>u.perfil!=='ADMIN');
+    if(!shown.length){node.innerHTML='<p class="muted">Nenhum usuário cadastrado ainda.</p>';return;}
+    shown.sort((a,b)=>a.email.localeCompare(b.email,'pt-BR')).forEach(u=>{
+      const btn=document.createElement('button');btn.type='button';btn.className='userrow'+(selected===u.email?' selected':'');
+      const st=u.ativo?'Ativo':'Bloqueado';
+      btn.innerHTML='<strong>'+esc(u.nome||u.email)+'</strong><span>'+esc(u.email)+'</span><span><span class="pill'+(u.ativo?'':' off')+'">'+st+'</span> · '+u.blocos.length+' blocos'+(u.trocarSenha?' · Troca de senha pendente':'')+'</span>';
+      btn.addEventListener('click',()=>fillForm(u));node.appendChild(btn);
+    });
+  }
+  async function reloadUsers(){
+    err('adminError','');
+    try{
+      users=await call('apiListarUsuarios',[token]);
+      drawList();
+      if(selected){const u=users.find(x=>x.email===selected);if(u)fillForm(u);else fillForm(null)}
+    }catch(e){err('adminError',message(e))}
+  }
+  el('newUser').addEventListener('click',()=>fillForm(null));
+  el('userForm').addEventListener('submit',async ev=>{
+    ev.preventDefault();err('adminError','');el('saveUser').disabled=true;
+    const data={email:el('userEmail').value,nome:el('userName').value,ativo:el('userActive').checked,blocos:currentBlocks()};
+    try{await call('apiSalvarUsuario',[token,data]);selected=data.email.toLowerCase().trim();await reloadUsers();}
+    catch(e){err('adminError',message(e))}
+    finally{el('saveUser').disabled=false}
+  });
+  el('resetUser').addEventListener('click',async()=>{
+    if(!selected||!confirm('Redefinir a senha de '+selected+' para SENHA_PROVISORIA? O usuário terá que trocá-la no próximo acesso.'))return;
+    try{await call('apiRedefinirSenha',[token,selected]);await reloadUsers();alert('Senha redefinida para SENHA_PROVISORIA.');}
+    catch(e){err('adminError',message(e))}
+  });
+  if(token){loading(true);call('apiSessao',[token]).then(u=>{user=u;loading(false);afterAuth().catch(e=>err('loginError',message(e)))})
+    .catch(e=>{loading(false);signOut();err('loginError','Sua sessão terminou. Entre novamente.')});}
+  else screen('login');
+})();
+</script>
+</body>
+</html>
