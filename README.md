@@ -13,6 +13,7 @@ Aqui ficam soluções práticas, feitas com carinho e sem enrolação: apps, pla
 | Solução | O que é |
 |---|---|
 | [🥣 Receitinhas da Thaís](./receitinhas-da-thais) | App de receitas com login, em Google Apps Script + Sheets, que libera os blocos de receitas aos poucos, conforme cada paciente evolui. Vem com o bloco Receitas interativas aberto para todo mundo. |
+| [🌱 Campo & Campus](./campo-ao-campus) | Consulta para os compradores dos campi do IFSP descobrirem os agricultores familiares da sua região e o que cada um pode fornecer. Site estático, com base de exemplo. |
 
 _Mais soluções chegando em breve._ 🌱
 
